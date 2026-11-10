@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dayana Torres · Portfolio</title>
+<meta name="description" content="Portfolio of Dayana Torres: software technology, data analysis and future marketing student.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== 1. DESIGN TOKENS: soft pink background, light beige accents, burgundy text/buttons ===== */
+:root{
+  --bg:#f9e6e8; --beige:#f4e8da; --card:#fff8f6; --rose:#a35b6f; --on-rose:#ffffff;
+  --ink:#4b2a33; --muted:#7a5560; --line:#ebcfd3;
+  --serif:'Fraunces',Georgia,serif; --sans:'Figtree','Segoe UI',system-ui,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#2a1d22;--beige:#3a2b2c;--card:#33252a;--rose:#e5a3b6;--on-rose:#2a1d22;--ink:#f7e9e8;--muted:#cdb4b9;--line:#4d3a40;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#2a1d22;--beige:#3a2b2c;--card:#33252a;--rose:#e5a3b6;--on-rose:#2a1d22;--ink:#f7e9e8;--muted:#cdb4b9;--line:#4d3a40;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:1.05rem}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0;font-weight:600}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+section{padding:5rem 0}
+h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:2rem}
+
+/* ===== 2. NAVIGATION ===== */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{font-family:var(--serif);font-size:1.25rem;font-weight:600;text-decoration:none}
+.menu{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0}
+.menu a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.96rem}
+.menu a:hover{color:var(--rose)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;color:var(--ink);font-size:1.2rem;cursor:pointer}
+
+/* ===== 3. HOME ===== */
+.hero{padding:4.5rem 0 5.5rem}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:3.5rem;align-items:center}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);letter-spacing:-.02em}
+.goal{margin:1rem 0 0;color:var(--rose);font-weight:600}
+.quote{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.55rem);margin:1.6rem 0 2rem;padding-left:1.1rem;border-left:3px solid var(--rose);max-width:30ch}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;padding:.8rem 1.8rem;border-radius:999px;text-decoration:none;font-weight:600;border:2px solid var(--rose);transition:background .2s,color .2s}
+.btn.primary{background:var(--rose);color:var(--on-rose)}
+.btn.primary:hover{background:transparent;color:var(--rose)}
+.btn.ghost{background:transparent;color:var(--rose)}
+.btn.ghost:hover{background:var(--rose);color:var(--on-rose)}
+/* Profile photo: replace the placeholder with <img src="profile.jpg" alt="Portrait of Dayana Torres"> */
+.photo{width:min(100%,320px);aspect-ratio:1;margin-inline:auto;border-radius:50%;background:var(--beige);border:8px solid var(--card);overflow:hidden;display:grid;place-items:center;text-align:center;color:var(--muted)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo b{display:block;font-family:var(--serif);font-size:3.4rem;color:var(--rose);font-weight:600;line-height:1}
+
+/* ===== 4. ABOUT ===== */
+.about{background:var(--beige)}
+.about .wrap{max-width:760px}
+.about p{margin:0 0 1.3rem}
+
+/* ===== 5. PROJECTS ===== */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.8rem;display:flex;flex-direction:column}
+.card h3{font-size:1.45rem;margin-bottom:.9rem}
+.card p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:1.2rem 0 1.4rem;padding:0}
+.tags li{background:var(--beige);padding:.25rem .8rem;border-radius:999px;font-size:.88rem;font-weight:500}
+.card .btn{margin-top:auto;align-self:flex-start;padding:.6rem 1.3rem}
+
+/* ===== 6. GALLERY ===== */
+.gallery{background:var(--beige)}
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.g-item{margin:0;background:var(--card);border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.g-img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--bg),var(--beige));display:grid;place-items:center;text-align:center;padding:0;font-family:var(--serif);font-size:1.25rem;color:var(--rose)}
+.g-img img,.g-img svg{width:100%;height:100%;object-fit:cover;display:block}
+/* Colors for the illustrated previews (they follow the page theme) */
+.s-r{fill:var(--rose)}.s-b{fill:var(--beige)}.s-c{fill:var(--card)}.s-g{fill:var(--bg)}.s-m{fill:var(--muted)}
+.s-ln{fill:none;stroke:var(--rose);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.s-st{fill:none;stroke:var(--line);stroke-width:2}.s-rd{fill:none;stroke:var(--card);stroke-width:9}
+.s-t{font:600 9px var(--sans);fill:var(--ink)}
+.g-text{padding:1.2rem 1.3rem 1.4rem}
+.g-item h3{font-size:1.15rem;margin-bottom:.4rem}
+.g-item p{margin:0 0 .8rem;color:var(--muted);font-size:.95rem}
+.g-item a{color:var(--rose);font-weight:600;font-size:.95rem}
+
+/* ===== 7. SKILLS ===== */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.cols h3{font-size:1.35rem;margin-bottom:1rem}
+.list{list-style:none;margin:0;padding:0}
+.list li{padding:.8rem 0;border-bottom:1px solid var(--line)}
+.list li:first-child{padding-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;margin:0;padding:0}
+.chips li{border:1px solid var(--line);background:var(--card);padding:.45rem 1rem;border-radius:999px;font-size:.95rem}
+
+/* ===== 8. CERTIFICATIONS ===== */
+.certs{background:var(--beige)}
+.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:2px solid var(--rose);max-width:760px}
+.timeline li{position:relative;padding:0 0 1.8rem 1rem}
+.timeline li::before{content:"";position:absolute;left:-2.1rem;top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--rose);border:3px solid var(--beige)}
+.timeline time{display:block;color:var(--rose);font-weight:600;font-size:.92rem}
+.timeline strong{font-family:var(--serif);font-size:1.2rem;font-weight:600}
+.timeline span{display:block;color:var(--muted);font-size:.95rem}
+
+.timeline a{color:var(--rose);font-weight:600;font-size:.95rem}
+/* ===== 9. CONTACT ===== */
+.contact{text-align:center}
+.contact p{max-width:46ch;margin:0 auto 2rem;color:var(--muted)}
+.info{list-style:none;margin:2rem auto 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 2rem}
+.info a{text-decoration:underline;text-underline-offset:3px}
+footer{padding:1.6rem 0 2rem;text-align:center;color:var(--muted);font-size:.9rem;background:var(--beige)}
+
+/* ===== 10. RESPONSIVE ===== */
+@media (max-width:980px){.grid,.g-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+  .burger{display:block}
+  .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);display:none;padding:.5rem 1.25rem 1rem}
+  .menu.open{display:flex}
+  .menu a{display:block;padding:.7rem 0}
+  .hero .wrap,.cols{grid-template-columns:1fr}
+  .hero .wrap{gap:2.5rem}
+  .photo{width:min(100%,260px);order:-1}
+  section{padding:3.8rem 0}
+}
+@media (max-width:640px){.grid,.g-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#home">Dayana Torres</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav aria-label="Main">
+      <ul class="menu" id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <h1>Dayana Torres</h1>
+      <p class="goal">Software Technology &amp; Data Analysis / Future Marketing University Student</p>
+      <p class="quote">“Discipline is the bridge between your goals and your achievements.”</p>
+      <div class="btns">
+        <a class="btn primary" href="#contact">Contact me</a>
+        <!-- CV link (SharePoint folder). Make sure the folder only contains the public CV -->
+        <a class="btn ghost" href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgDcC89VKuNlSKS7GhEqJOpPAXawPXoSYIaIbtnVplB7P1E?e=WOwy9Z" target="_blank" rel="noopener">View my CV</a>
+      </div>
+    </div>
+    <!-- Replace this placeholder with: <img src="profile.jpg" alt="Portrait of Dayana Torres"> -->
+    <div class="photo" role="img" aria-label="Placeholder for the professional profile photo of Dayana Torres">
+      <div><b>DT</b>Profile photo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ME -->
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>About me</h2>
+    <p>I am a high school senior and academic excellence scholarship recipient at Centro ¡Supérate! ADOC. Throughout my education at Complejo Educativo Residencial Altavista and the program, I have built core values such as resilience, responsibility, and perseverance to achieve every goal I set.</p>
+    <p>My relationship with technology is full of contrasts: on one hand, I am fascinated by discovering its potential through data analysis and problem-solving; but on the other hand, I sometimes recognize that it can feel cold, saturated, or overwhelming. However, it is precisely this complexity that drives me to understand it better and use it with a clear purpose.</p>
+    <p>Today, I seek to merge my academic discipline with my technical and human skills to become an integral professional, capable of bringing real value and making a positive difference in every challenge I undertake.</p>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <h2>Featured projects</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>EmprendeMap</h3>
+        <p>A membership-based interactive web platform that connects entrepreneurs with commercial spaces directly from property owners.</p>
+        <ul class="tags"><li>Next.js</li><li>React</li><li>Tailwind CSS</li><li>Node.js</li></ul>
+        <a class="btn ghost" href="https://cute-halva-ab0407.netlify.app" target="_blank" rel="noopener">Live demo</a>
+      </article>
+      <article class="card">
+        <h3>Kmaduras</h3>
+        <p>An intelligent application and simulator for education and preliminary burn lesion diagnosis through image classification.</p>
+        <ul class="tags"><li>Image classification models</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li></ul>
+        <a class="btn ghost" href="https://relaxed-treacle-448275.netlify.app" target="_blank" rel="noopener">Live demo</a>
+      </article>
+      <article class="card">
+        <h3>Data Dashboards</h3>
+        <p>Three dashboards built as data analyses for different companies, turning key business metrics into clear visuals that support better decision-making.</p>
+        <ul class="tags"><li>Microsoft Excel</li><li>Data analysis</li><li>Data visualization</li></ul>
+        <a class="btn ghost" href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgAOxDNtpi-5TZHabK9gpg5vAUcVRC2ZmCGw5_EPFyK4F38?e=OZEgk2" target="_blank" rel="noopener">View dashboards</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY: replace each .g-img with <img src="your-image.png" alt="..."> -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <h2>Gallery</h2>
+    <div class="g-grid">
+      <!-- Each .g-img holds an illustrated preview. To use a real screenshot, replace the <svg> with <img src="your-image.png" alt="..."> -->
+      <figure class="g-item">
+        <div class="g-img">
+          <svg viewBox="0 0 320 200" role="img" aria-label="Illustration of the EmprendeMap platform: a map with location pins and a commercial space listing card">
+            <rect class="s-b" width="320" height="200"/>
+            <path class="s-st" style="stroke:var(--card);stroke-width:12" d="M0 60H320M0 140H320M90 0V200M230 0V200"/>
+            <rect class="s-g" x="14" y="12" width="64" height="40" rx="6"/><rect class="s-g" x="104" y="12" width="112" height="40" rx="6"/><rect class="s-g" x="244" y="12" width="62" height="40" rx="6"/>
+            <rect class="s-g" x="14" y="76" width="64" height="52" rx="6"/><rect class="s-g" x="244" y="76" width="62" height="52" rx="6"/>
+            <g class="s-r"><circle cx="55" cy="95" r="9"/><circle cx="160" cy="98" r="9"/><circle cx="262" cy="36" r="9"/></g>
+            <g class="s-c"><circle cx="55" cy="95" r="3.5"/><circle cx="160" cy="98" r="3.5"/><circle cx="262" cy="36" r="3.5"/></g>
+            <rect class="s-c" x="112" y="132" width="196" height="56" rx="10"/>
+            <rect class="s-b" x="122" y="142" width="48" height="36" rx="6"/>
+            <rect class="s-r" x="180" y="146" width="84" height="8" rx="4"/><rect class="s-m" x="180" y="162" width="110" height="6" rx="3" style="opacity:.4"/><rect class="s-r" x="180" y="174" width="44" height="8" rx="4" style="opacity:.6"/>
+          </svg>
+        </div>
+        <div class="g-text"><h3>EmprendeMap</h3><p>Entrepreneurs explore available commercial spaces on an interactive map, published directly by property owners.</p><a href="https://cute-halva-ab0407.netlify.app" target="_blank" rel="noopener">Open demo</a></div>
+      </figure>
+      <figure class="g-item">
+        <div class="g-img">
+          <svg viewBox="0 0 320 200" role="img" aria-label="Illustration of the Kmaduras app: a phone showing a captured photo and a burn degree result">
+            <rect class="s-b" width="320" height="200"/>
+            <rect class="s-c" x="112" y="10" width="96" height="180" rx="16" style="stroke:var(--line);stroke-width:2"/>
+            <rect class="s-b" x="122" y="26" width="76" height="80" rx="8"/>
+            <circle class="s-r" cx="160" cy="66" r="20" style="opacity:.55"/><circle cx="160" cy="66" r="30" class="s-st" style="stroke:var(--rose);stroke-dasharray:6 6"/>
+            <rect class="s-r" x="122" y="116" width="76" height="24" rx="12"/><text class="s-t" x="160" y="132" text-anchor="middle" style="fill:var(--card)">2nd degree</text>
+            <rect class="s-m" x="128" y="150" width="64" height="6" rx="3" style="opacity:.4"/><rect class="s-m" x="128" y="162" width="46" height="6" rx="3" style="opacity:.4"/>
+            <circle class="s-r" cx="62" cy="100" r="22"/><path d="M52 100l7 7 12-14" fill="none" stroke="var(--card)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect class="s-c" x="238" y="80" width="56" height="40" rx="8"/><rect class="s-r" x="246" y="90" width="40" height="6" rx="3"/><rect class="s-m" x="246" y="104" width="28" height="6" rx="3" style="opacity:.4"/>
+          </svg>
+        </div>
+        <div class="g-text"><h3>Kmaduras</h3><p>A photo-based simulator that classifies burn degrees and guides first aid.</p><a href="https://relaxed-treacle-448275.netlify.app" target="_blank" rel="noopener">Open demo</a></div>
+      </figure>
+      <figure class="g-item">
+        <div class="g-img">
+          <svg viewBox="0 0 320 200" role="img" aria-label="Illustration of a business dashboard with a bar chart and a donut chart">
+            <rect class="s-b" width="320" height="200"/>
+            <rect class="s-c" x="14" y="14" width="182" height="172" rx="12"/>
+            <text class="s-t" x="26" y="34">Tickets by week</text>
+            <rect class="s-r" x="30" y="110" width="22" height="60" rx="4" style="opacity:.5"/><rect class="s-r" x="62" y="84" width="22" height="86" rx="4" style="opacity:.7"/><rect class="s-r" x="94" y="60" width="22" height="110" rx="4"/><rect class="s-r" x="126" y="92" width="22" height="78" rx="4" style="opacity:.7"/><rect class="s-r" x="158" y="72" width="22" height="98" rx="4" style="opacity:.85"/>
+            <rect class="s-c" x="208" y="14" width="98" height="82" rx="12"/><text class="s-t" x="220" y="34">Satisfaction</text>
+            <circle cx="257" cy="66" r="18" fill="none" stroke="var(--beige)" stroke-width="9"/><circle cx="257" cy="66" r="18" fill="none" stroke="var(--rose)" stroke-width="9" stroke-dasharray="85 113" transform="rotate(-90 257 66)"/>
+            <rect class="s-c" x="208" y="106" width="98" height="80" rx="12"/><text class="s-t" x="220" y="126">Avg. response</text>
+            <rect class="s-r" x="220" y="140" width="52" height="12" rx="6"/><rect class="s-m" x="220" y="162" width="74" height="6" rx="3" style="opacity:.4"/>
+          </svg>
+        </div>
+        <div class="g-text"><h3>Data Dashboards</h3><p>Three dashboards created as data analyses for different companies, turning business metrics into clear visuals for decision-making.</p><a href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgAOxDNtpi-5TZHabK9gpg5vAUcVRC2ZmCGw5_EPFyK4F38?e=OZEgk2" target="_blank" rel="noopener">View dashboards</a></div>
+      </figure>
+      </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="cols">
+      <div>
+        <h3>Technical skills</h3>
+        <ul class="list">
+          <li>Data Analysis (Advanced Excel)</li>
+          <li>Intermediate English (TOEIC certified)</li>
+          <li>Programming Fundamentals (HTML, CSS, JavaScript, SQL)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Soft skills</h3>
+        <ul class="chips">
+          <li>Leadership</li><li>Teamwork</li><li>Active listening</li><li>Problem-solving</li><li>Time management</li><li>Empathy</li><li>Organization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs" id="certifications">
+  <div class="wrap">
+    <h2>Certifications</h2>
+    <ol class="timeline">
+      <li><time>November 2025</time><strong>TOEIC Listening and Reading</strong></li>
+      <li><time>November 2025</time><strong>Microsoft Office Specialist: Excel Associate</strong><span>Microsoft 365 Apps</span></li>
+      <li><time>March 2026</time><strong>Microsoft Office Specialist: Excel Expert</strong><span>Microsoft 365 Apps</span></li>
+      <li><time>April 2026</time><strong>Personal Finance Basic Course</strong><span>Centro ¡Supérate! ADOC &amp; UPES</span><a href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgA5rwQndnBCRppWYeNhO11nAalHC0LLQwh1_uLA55Xf_UE?e=9feRTs" target="_blank" rel="noopener">View certificate</a></li>
+      <li><time>October 2026</time><strong>English Conversation Club</strong><span>TELUS Digital</span><a href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgDnijVpdf5dQ7Ao-1BNbKefAbZaZ7gsRJ445AcV3DS3lj0?e=R2bmBc" target="_blank" rel="noopener">View certificate</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let’s talk</h2>
+    <p>Have an opportunity, an idea, or want to know more about my work? Write to me and I’ll gladly reply.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn primary" href="mailto:tdayana493@gmail.com">Contact me</a>
+      <a class="btn ghost" href="https://superate2014-my.sharepoint.com/:f:/g/personal/dayana_torres2026_adoc_superate_org/IgDcC89VKuNlSKS7GhEqJOpPAXawPXoSYIaIbtnVplB7P1E?e=WOwy9Z" target="_blank" rel="noopener">View my CV</a>
+    </div>
+    <ul class="info">
+      <li><a href="mailto:tdayana493@gmail.com">tdayana493@gmail.com</a></li>
+      <li><a href="https://github.com/dayatorres14" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/dayana-torres14/" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="year">2026</span> Dayana Torres</footer>
+
+<script>
+/* Responsive menu */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}});
+/* Automatic year */
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
